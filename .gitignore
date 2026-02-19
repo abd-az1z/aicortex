@@ -19,6 +19,7 @@ build/
 
 # Internal docs
 PRD.md
+me/
 
 # Misc
 .DS_Store
