@@ -17,6 +17,9 @@ out/
 # Production build
 build/
 
+# Internal docs
+PRD.md
+
 # Misc
 .DS_Store
 *.pem
