@@ -8,7 +8,7 @@ import {
     Activity,
     Settings,
     CreditCard,
-    Key,
+    BookOpen,
     Zap,
     ChevronRight,
 } from 'lucide-react';
@@ -16,6 +16,7 @@ import {
 const navItems = [
     { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
     { href: '/requests', label: 'Requests', icon: Activity },
+    { href: '/docs', label: 'Quick Start', icon: BookOpen },
     { href: '/settings', label: 'Settings', icon: Settings },
     { href: '/billing', label: 'Billing', icon: CreditCard },
 ];
