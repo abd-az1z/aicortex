@@ -238,8 +238,11 @@ export async function POST(req: NextRequest) {
         },
         // AICortex metadata (extra fields, ignored by OpenAI-compatible clients)
         aicortex: {
+            request_id: `aicx-${Date.now()}`,
             difficulty_score: difficultyScore,
+            scoring_factors: scoreComplexity(body.messages).factors,
             model_tier: targetTier,
+            model_used: completionResult.model,
             cost_actual_usd: costs.costActual,
             cost_hypothetical_usd: costs.costHypothetical,
             savings_usd: costs.savingsDelta,
