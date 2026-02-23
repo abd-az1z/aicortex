@@ -6,6 +6,7 @@ import type { CompletionMessage } from '../providers/types';
 
 // Keywords that indicate high-complexity tasks
 const HIGH_COMPLEXITY_KEYWORDS = [
+    // Technical / engineering
     'analyze', 'analysis', 'complex', 'detailed', 'comprehensive', 'research',
     'explain in depth', 'step by step', 'algorithm', 'architecture', 'design',
     'implement', 'debug', 'optimize', 'refactor', 'mathematical', 'proof',
@@ -14,6 +15,26 @@ const HIGH_COMPLEXITY_KEYWORDS = [
     'essay', 'report', 'thesis', 'dissertation', 'paper',
     'code', 'function', 'class', 'module', 'api', 'database', 'sql',
     'machine learning', 'neural', 'transformer', 'embedding',
+    // Customer support — issue/escalation signals
+    'not working', 'not receiving', 'keeps failing', 'keeps getting', 'error',
+    'issue', 'problem', 'trouble', 'troubleshoot', 'broken', 'failed', 'failing',
+    'escalate', 'escalation', 'urgent', 'critical', 'blocked', 'blocking',
+    'still not', 'third time', 'multiple times', 'again and again',
+    // Billing / account complexity
+    'dispute', 'charged twice', 'overcharged', 'incorrect charge', 'wrong charge',
+    'proration', 'credit', 'refund request', 'penalty', 'sla', 'contract',
+    'invoice discrepancy', 'billing issue', 'cancel and refund',
+    // Technical setup / integration
+    'oauth', 'webhook', 'integration', 'connect', 'embed', 'configure',
+    'permission', 'role-based', 'rbac', 'multi-tenant', 'rate limit',
+    'signature', 'payload', 'endpoint', 'authentication', 'authorization',
+    // Compliance / legal / enterprise
+    'compliance', 'gdpr', 'soc2', 'audit', 'data residency', 'legal',
+    'liability', 'regulatory', 'enterprise', 'procurement', 'dpa',
+    // Multi-part / deep reasoning signals
+    'walk me through', 'in detail', 'step by step', 'systematically',
+    'root cause', 'methodology', 'framework', 'recommend', 'recommendation',
+    'multiple', 'several', 'across', 'each', 'all of', 'comprehensive',
 ];
 
 // Keywords that indicate low-complexity tasks
@@ -23,6 +44,7 @@ const LOW_COMPLEXITY_KEYWORDS = [
     'translate', 'summarize briefly', 'tldr', 'quick',
     'simple', 'basic', 'easy', 'short', 'brief',
     'hello', 'hi', 'thanks', 'thank you', 'ok', 'okay',
+    'how do i', 'do you have', 'can i', 'is there', 'where can',
 ];
 
 interface ScoringFactors {
@@ -83,9 +105,9 @@ export function getModelTierForScore(
 ): 'cheap' | 'mid' | 'premium' {
     // Adjust thresholds based on user preference
     const thresholds = {
-        cost: { cheap: 0.5, mid: 0.8 }, // push more to cheap
-        balanced: { cheap: 0.3, mid: 0.7 }, // default
-        quality: { cheap: 0.2, mid: 0.5 }, // push more to premium
+        cost: { cheap: 0.4, mid: 0.75 }, // push more to cheap
+        balanced: { cheap: 0.2, mid: 0.55 }, // default
+        quality: { cheap: 0.1, mid: 0.4 }, // push more to premium
     };
 
     const t = thresholds[preference];
