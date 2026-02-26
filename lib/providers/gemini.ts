@@ -7,7 +7,10 @@ export class GeminiAdapter implements ModelAdapter {
     readonly provider = 'gemini';
 
     constructor(modelId: string = 'gemini-1.5-flash') {
-        this.client = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!);
+        if (!process.env.GOOGLE_AI_API_KEY) {
+            throw new Error('GOOGLE_AI_API_KEY not configured');
+        }
+        this.client = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
         this.modelId = modelId;
     }
 

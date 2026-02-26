@@ -7,6 +7,9 @@ export class MistralAdapter implements ModelAdapter {
     readonly provider = 'mistral';
 
     constructor(modelId: string = 'mistral-small-latest') {
+        if (!process.env.MISTRAL_API_KEY) {
+            throw new Error('MISTRAL_API_KEY not configured');
+        }
         this.client = new Mistral({ apiKey: process.env.MISTRAL_API_KEY });
         this.modelId = modelId;
     }

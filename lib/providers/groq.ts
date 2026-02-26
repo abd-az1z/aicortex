@@ -7,6 +7,9 @@ export class GroqAdapter implements ModelAdapter {
     readonly provider = 'groq';
 
     constructor(modelId: string = 'llama-3.1-8b-instant') {
+        if (!process.env.GROQ_API_KEY) {
+            throw new Error('GROQ_API_KEY not configured');
+        }
         this.client = new Groq({ apiKey: process.env.GROQ_API_KEY });
         this.modelId = modelId;
     }

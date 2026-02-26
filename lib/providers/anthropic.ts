@@ -7,6 +7,9 @@ export class AnthropicAdapter implements ModelAdapter {
     readonly provider = 'anthropic';
 
     constructor(modelId: string = 'claude-3-5-sonnet-20241022') {
+        if (!process.env.ANTHROPIC_API_KEY) {
+            throw new Error('ANTHROPIC_API_KEY not configured');
+        }
         this.client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
         this.modelId = modelId;
     }

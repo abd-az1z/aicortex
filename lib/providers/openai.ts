@@ -7,6 +7,9 @@ export class OpenAIAdapter implements ModelAdapter {
     readonly provider = 'openai';
 
     constructor(modelId: string = 'gpt-4o') {
+        if (!process.env.OPENAI_API_KEY) {
+            throw new Error('OPENAI_API_KEY not configured');
+        }
         this.client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
         this.modelId = modelId;
     }
