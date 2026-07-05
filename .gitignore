@@ -31,3 +31,5 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+architecture_flow.md
+demo_script.md
