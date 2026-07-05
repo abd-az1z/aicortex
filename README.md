@@ -1,8 +1,8 @@
-# AICortex — AI Cost Intelligence Platform
+# AICortex - AI Cost Intelligence Platform
 
 > **Reduce your LLM bill by 20–40% with one line of code.**
 
-AICortex is an intelligent API gateway that sits between your application and your LLM providers. Instead of blindly sending every request to GPT-4o, it scores each request for complexity and routes it to the cheapest model that can handle it well — while logging every dollar saved in real time. Built as a drop-in OpenAI-compatible replacement: change one URL, start saving.
+AICortex is an intelligent API gateway that sits between your application and your LLM providers. Instead of blindly sending every request to GPT-4o, it scores each request for complexity and routes it to the cheapest model that can handle it well - while logging every dollar saved in real time. Built as a drop-in OpenAI-compatible replacement: change one URL, start saving.
 
 **Live Demo:** [https://aicortex.dev](https://aicortex.dev) ← _replace with your deployed URL_
 
@@ -10,7 +10,7 @@ AICortex is an intelligent API gateway that sits between your application and yo
 
 ## The Problem It Solves
 
-AI-native startups are hemorrhaging money. They integrate GPT-4o once because it works, then forget to optimize — paying premium prices for tasks a $0.05/1M token model handles equally well. There's no visibility into what's being spent, on what, or why. AICortex fixes this without any code migration.
+AI-native startups are hemorrhaging money. They integrate GPT-4o once because it works, then forget to optimize - paying premium prices for tasks a $0.05/1M token model handles equally well. There's no visibility into what's being spent, on what, or why. AICortex fixes this without any code migration.
 
 **Pilot results across 46 test requests:** 93% routing accuracy, up to **99% cost savings** on simple queries (e.g., $0.000008 actual vs $0.00133 hypothetical).
 
@@ -22,7 +22,7 @@ AI-native startups are hemorrhaging money. They integrate GPT-4o once because it
 Every request is scored 0–1 using a weighted model that factors in prompt length, task-type keywords, and conversation depth. Simple FAQ? Routes to Groq Llama-8B at $0.05/1M tokens. Complex analysis or code generation? Escalates to GPT-4o or Claude 3.5 Sonnet automatically. Routing preference is user-configurable: `cost`, `balanced`, or `quality`.
 
 ### 5-Provider Model Network
-A single normalized endpoint across **OpenAI, Anthropic, Google Gemini, Groq, and Mistral** — 11 models, 3 tiers. All provider differences are abstracted behind a unified `generateCompletion()` interface.
+A single normalized endpoint across **OpenAI, Anthropic, Google Gemini, Groq, and Mistral** - 11 models, 3 tiers. All provider differences are abstracted behind a unified `generateCompletion()` interface.
 
 | Tier | Models | Cost Range |
 |------|--------|-----------|
@@ -31,14 +31,14 @@ A single normalized endpoint across **OpenAI, Anthropic, Google Gemini, Groq, an
 | Premium | GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro | $3.00–$15.00/1M |
 
 ### Automatic Fallback & Retry
-If a model fails, rate-limits, or times out — the system automatically retries and escalates to the next tier. No downtime, no manual intervention, no alert fatigue. Auth errors short-circuit immediately to avoid wasted retries.
+If a model fails, rate-limits, or times out - the system automatically retries and escalates to the next tier. No downtime, no manual intervention, no alert fatigue. Auth errors short-circuit immediately to avoid wasted retries.
 
 ### Per-Request Cost Accounting
 Every response includes an `aicortex` metadata block with:
-- `cost_actual_usd` — what you actually paid
-- `cost_hypothetical_usd` — what GPT-4o would have cost
-- `savings_usd` + `savings_percent` — your realized savings
-- `difficulty_score` + `scoring_factors` — full routing transparency
+- `cost_actual_usd` - what you actually paid
+- `cost_hypothetical_usd` - what GPT-4o would have cost
+- `savings_usd` + `savings_percent` - your realized savings
+- `difficulty_score` + `scoring_factors` - full routing transparency
 
 ### Budget Guardrails
 Set a monthly spend cap. Requests that would exceed it are rejected before the model call fires. Starter plan includes a 500K request/month limit with upgrade path to Growth (unlimited).
@@ -52,7 +52,7 @@ A real-time analytics UI showing:
 - Monthly rollups stored as materialized summaries
 
 ### Drop-In OpenAI Compatibility
-The API is fully OpenAI-compatible — same request/response schema, same `Authorization: Bearer` header format, same `choices[0].message.content` response path. Existing SDKs work without modification.
+The API is fully OpenAI-compatible - same request/response schema, same `Authorization: Bearer` header format, same `choices[0].message.content` response path. Existing SDKs work without modification.
 
 ```bash
 # Before
@@ -60,7 +60,7 @@ curl https://api.openai.com/v1/chat/completions \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello"}]}'
 
-# After — same format, intelligent routing
+# After - same format, intelligent routing
 curl https://api.aicortex.dev/api/v1/chat/completions \
   -H "Authorization: Bearer aicx_your_key" \
   -d '{"model": "auto", "messages": [{"role": "user", "content": "Hello"}]}'
@@ -195,7 +195,7 @@ Check the `aicortex` field in the response to see the routing decision and savin
 | Growth | $999/mo | Unlimited | Advanced routing, budget guardrails, priority support |
 | Enterprise | Custom | Unlimited | Dedicated cluster, SLA routing, on-prem option |
 
-Priced on value delivered — not per token.
+Priced on value delivered - not per token.
 
 ---
 
@@ -205,7 +205,7 @@ Built in 4 weeks as an end-to-end product: from PRD and ICP definition through t
 
 **Key engineering decisions:**
 - OpenAI-compatible schema so adoption requires zero SDK changes
-- Fallback handler escalates tiers rather than failing — prioritizes uptime over cost purity
+- Fallback handler escalates tiers rather than failing - prioritizes uptime over cost purity
 - Fire-and-forget DB logging keeps API latency unaffected by analytics writes
 - Complexity scorer weights keywords at 45% (dominant signal) vs length at 40% and context at 15%
 
@@ -224,6 +224,6 @@ Built in 4 weeks as an end-to-end product: from PRD and ICP definition through t
 
 ## Author
 
-**Abdulaziz** — [mohdabdulaziz2023@gmail.com](mailto:mohdabdulaziz2023@gmail.com)
+**Abdulaziz** - [mohdabdulaziz2023@gmail.com](mailto:mohdabdulaziz2023@gmail.com)
 
 Built to prove that LLM cost optimization is an infrastructure problem, not a product management problem. If you're spending serious money on LLMs and want to talk, reach out.
